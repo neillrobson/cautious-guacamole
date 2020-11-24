@@ -23,6 +23,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Set up the environment with Ruby 2.7
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+
       - name: Install Ruby dependencies
         run: bundle install
 
