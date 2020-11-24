@@ -36,8 +36,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
+      # We must explicitly set bundle install path so that it can be cached
       - name: Install Ruby dependencies
-        run: bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
 
       - name: Check Jekyll version
         run: bundle exec jekyll --version
