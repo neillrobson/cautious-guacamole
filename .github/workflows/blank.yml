@@ -15,18 +15,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Set up the environment with Ruby 2.7
+      # Set up the environment with Ruby 2.7 and Node 14
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.7'
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
 
       # Use GitHub Actions' cache to shorten build times and decrease load on servers
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          path: |
+            vendor/bundle
+            node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json', '**/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}-gems-
+            ${{ runner.os }}-
 
       # We must explicitly set bundle install path so that it can be cached
       - name: Install Ruby dependencies
@@ -34,8 +39,11 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
+      - name: Install Node dependencies
+        run: npm install
+
+      - name: Build website with Gulp
+        run: npx gulp
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

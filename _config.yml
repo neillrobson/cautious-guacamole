@@ -32,6 +32,8 @@ github_username:  neillrobson
 theme: minima
 plugins:
   - jekyll-feed
+keep_files:
+  - assets
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -46,6 +48,9 @@ exclude:
   - gemfiles/
   - Gemfile
   - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - gulpfile.js
   - node_modules/
   - vendor/bundle/
   - vendor/cache/

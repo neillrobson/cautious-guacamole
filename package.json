@@ -1,0 +1,26 @@
+{
+  "name": "cautious-guacamole",
+  "version": "0.1.0",
+  "description": "A sandbox in which Neill teaches himself about GitHub Actions.",
+  "private": true,
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neillrobson/cautious-guacamole.git"
+  },
+  "author": "Neill Robson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neillrobson/cautious-guacamole/issues"
+  },
+  "homepage": "https://github.com/neillrobson/cautious-guacamole#readme",
+  "dependencies": {
+    "canvas-confetti": "^1.3.2"
+  },
+  "devDependencies": {
+    "fs-extra": "^9.0.1",
+    "gulp": "^4.0.2"
+  }
+}
