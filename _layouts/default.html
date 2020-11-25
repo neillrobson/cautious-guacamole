@@ -11,6 +11,11 @@
     <div class="wrapper">
       {{ content }}
     </div>
+    {% if jekyll.environment != "production" %}
+    <div class="wrapper devnote">
+      This content should not be visible on a production build.
+    </div>
+    {% endif %}
   </main>
 
   {%- include footer.html -%}
